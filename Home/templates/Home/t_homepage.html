@@ -1,0 +1,16 @@
+{% extends 'Home/base.html' %}
+
+{% block content %}
+  <h2>Hello {{ request.user.teacher.name }}</h2>
+  {% for ass in ass_list %}
+    <div class="card" style="width: 25rem;">
+      <div class="card-body">
+        <h5 class="card-title">{{ass.course.id}}</h5>
+        <h5 class="card-title">{{ass.course.name}}</h5>
+        <h6 class="card-subtitle mb-2 text-muted">{{ass.class_id.dept}} : Sem {{ass.class_id.sem}}</h6>
+        <a class="btn btn-secondary text-white" href="{% url 't_class_date' ass.id %}" role="button">Attendance</a>
+        <a class="btn btn-secondary text-white" href="{% url 't_assignment_date' ass.id %}" role="button">Assignment</a>
+        <a class="btn btn-secondary text-white" href="{}" role="button">View Report</a>
+    </div>
+  {% endfor %}
+{% endblock %}

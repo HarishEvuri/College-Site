@@ -1,0 +1,44 @@
+{% extends 'Home/base.html' %}
+{% block content %}
+
+<form action="{% url 'assignment_confirm' assc.id %}" method="post">
+            {% csrf_token %}
+    <div class="card mb-3">
+        <div class="card-header">
+          <i class="fas fa-table"></i>
+         <b>{{ dept1.name }}</b></div>
+        <div class="card-body">
+          <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+              <thead>
+                <tr>
+                    <th>Roll Number</th>
+                    <th>Student name</th>
+                    <th>Marks</th>
+                </tr>
+              </thead>
+                <tbody>
+                    {% for ass in ass_list %}
+                    <tr>
+                    <td>{{ass.student.roll_number}}</td>
+                    <td>{{ass.student.name}}</td>
+                    <td>
+                        <div class="btn-group btn-group-toggle" data-toggle="buttons">
+
+                                <input type="number" name="{{ ass.student.roll_number }}" value="{{ ass.marks }}">
+
+                        </div>
+                    </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+
+    <input class="btn btn-success" type="submit" value="Submit">
+</form>
+
+{% endblock %}

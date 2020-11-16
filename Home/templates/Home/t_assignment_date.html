@@ -1,0 +1,42 @@
+{% extends 'Home/base.html' %}
+
+{% block content %}
+    <div class="card mb-3">
+        <div class="card-header">
+              <i class="fas fa-table"></i>
+            <b>Assignments</b></div>
+            <div class="card-body">
+              <div class="table-responsive">
+                <a class="btn btn-warning text-white" href="{% url 't_extra_assignment' ass.id %}" role="button">Add Assignment</a>
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                  <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Assignment Name</th>
+                        <th>Max Marks</th>
+                        <th></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for a in ass_list %}
+                    <tr>
+                        {% if a.status == 1 %}
+                            <td>{{ a.date }}</td>
+                            <td>{{ a.name }}</td>
+                            <td>{{ a.maxmarks }}</td>
+                            <td>
+                                <a class="btn btn-primary" href="{% url 'edit_assignment' a.id %}" role="button">Edit Marks</a>
+                                <a class="btn btn-danger" href="{}">Delete</a>
+                            </td>
+                        {% endif %}
+                    </tr>
+                    {% empty %}
+                            <p>student has no courses</p>
+                    {% endfor %}
+
+                  </tbody>
+                </table>
+              </div>
+        </div>
+    </div>
+{% endblock %}

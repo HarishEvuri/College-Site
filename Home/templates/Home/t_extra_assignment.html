@@ -1,0 +1,57 @@
+{% extends 'Home/base.html' %}
+{% block content %}
+{% if c.student_set.all %}
+
+<form action="{% url 'e_assignment_confirm' ass.id %}" method="post">
+            {% csrf_token %}
+    <label for="date">Enter Date: </label>
+    <input type="date" name="date">
+    <label for="name">Assignment Name: </label>
+    <input type="text" name="name">
+    <label for="maxmarks">Max Marks: </label>
+    <input type="number" name="maxmarks">
+
+    <div class="card mb-3">
+        <div class="card-header">
+          <i class="fas fa-table"></i>
+         <b>{{ dept1.name }}</b></div>
+        <div class="card-body">
+          <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+              <thead>
+                <tr>
+                  <th>Roll Number</th>
+                    <th>Student name</th>
+                    <th>Marks</th>
+                </tr>
+              </thead>
+                <tbody>
+                {% for s in c.student_set.all %}
+                    <tr>
+                      <td>{{s.roll_number}}</td>
+                    <td>{{s.name}}</td>
+                    <td>
+                        <div class="btn-group btn-group-toggle" data-toggle="buttons">
+
+                            <input type="number" name="{{ s.roll_number }}"}">
+
+                        </div>
+                    </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+
+    <input class="btn btn-success" type="submit" value="Submit">
+</form>
+
+
+{% else %}
+    <p>No students in Class</p>
+{% endif %}
+
+{% endblock %}

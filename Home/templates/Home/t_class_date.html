@@ -1,0 +1,40 @@
+{% extends 'Home/base.html' %}
+
+{% block content %}
+    <div class="card mb-3">
+        <div class="card-header">
+              <i class="fas fa-table"></i>
+            <b>Attendance</b></div>
+            <div class="card-body">
+              <div class="table-responsive">
+                <a class="btn btn-primary text-white mr-2" href="{% url 't_extra_class' ass.id %}" role="button">Mark Attendance</a>
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                  <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Day</th>
+                        <th>Number of Attendees</th>
+                        <th></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for a in att_list %}
+                    <tr>
+                        <td>{{ a.date }}</td>
+                        <td>{{ a.date|date:"l" }}</td>
+                        <td>{{ a.status }}</td>
+                        <td>
+                            <a class="btn btn-secondary" href="{% url 'edit_att' a.id %}" role="button">View / Edit Attendance</a>
+                           <!--  <a class="btn btn-danger" href="{}">Delete</a> -->
+                        </td>
+                    </tr>
+                    {% empty %}
+                            <p>student has no courses</p>
+                    {% endfor %}
+
+                  </tbody>
+                </table>
+              </div>
+        </div>
+    </div>
+{% endblock %}

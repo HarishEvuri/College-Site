@@ -1,0 +1,41 @@
+{% extends 'Home/base.html' %}
+
+    {% block content %}
+        <div class="card mb-3">
+            <div class="card-header">
+              <i class="fas fa-table"></i>
+            <h4>{{ cr.name }}</h4></div>
+            <div class="card-body">
+              <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                  <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Date</th>
+                        <th>Assignment Name</th>
+                        <th>Max Marks</th>
+                        <th>Obtained Marks</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                        {% for a in ass_list %}
+                        <tr class="row100 body">
+                            <td>{{ forloop.counter }}</td>
+                            <td>{{ a.date }}</td>
+                            <td>{{ a.assignmentclass.name }}</td>
+                            <td>{{ a.assignmentclass.maxmarks }}</td>
+                            <td>{{ a.marks }}</td>
+                        </tr>
+                    {% empty %}
+                            <p>You have no Assignments</p>
+                    {% endfor %}
+
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+
+    {% endblock %}
+
